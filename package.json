@@ -1,0 +1,98 @@
+{
+  "name": "pacientech-web-app",
+  "version": "0.1.0",
+  "description": "Modern patient information record keeping.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --mode production --config ./build/webpack.prod.config.js",
+    "dev": "webpack-dev-server --mode development --config ./build/webpack.dev.config.js",
+    "lint": "eslint src/**/*.js",
+    "test": "jest"
+  },
+  "author": "Diego Vizhnay <diego@vzhny.com> (https://vizhnay.io)",
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint",
+      "pre-push": "yarn run test"
+    }
+  },
+  "dependencies": {
+    "@reach/router": "^1.2.1",
+    "bootswatch": "^4.2.1",
+    "classnames": "^2.2.6",
+    "prop-types": "^15.6.2",
+    "react": "16.8.0-alpha.1",
+    "react-dom": "16.8.0-alpha.1",
+    "reactstrap": "^7.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.4.2",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.0.0",
+    "babel-loader": "^8.0.4",
+    "chalk": "^2.4.2",
+    "clean-terminal-webpack-plugin": "^2.0.1",
+    "clean-webpack-plugin": "^1.0.0",
+    "css-loader": "^1.0.1",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-jest": "^22.1.3",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.4",
+    "file-loader": "^2.0.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.3.1",
+    "ip": "^1.1.5",
+    "jest": "^24.0.0",
+    "jest-dom": "^3.0.1",
+    "jest-transform-stub": "^1.0.0",
+    "mini-css-extract-plugin": "^0.4.5",
+    "node-sass": "^4.10.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "react-svg-loader": "^2.1.0",
+    "react-testing-library": "^5.4.4",
+    "sass-loader": "^7.1.0",
+    "scss-loader": "^0.0.1",
+    "style-loader": "^0.23.1",
+    "svg-url-loader": "^2.3.2",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss|png|jpg|svg|ttf|woff|woff2)$": "jest-transform-stub"
+    },
+    "moduleNameMapper": {
+      "@/(.*)$": "<rootDir>/src/$1"
+    },
+    "collectCoverageFrom": [
+      "src/components/**/*.js",
+      "src/containers/**/*.js",
+      "src/pages/*.js"
+    ],
+    "setupFilesAfterEnv": [
+      "jest-dom/extend-expect",
+      "react-testing-library/cleanup-after-each"
+    ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
