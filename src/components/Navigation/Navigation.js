@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
-import { Button } from 'reactstrap';
+import { Navbar, NavbarBrand, NavbarToggler, Nav, NavItem, NavLink, Collapse } from 'reactstrap';
+import styles from './Navigation.module.scss';
 
 const Navigation = () => {
   const [isOpen, toggleNavbar] = useState(false);
 
   return (
-    <div style={{ width: '180px' }}>
-      {isOpen ? <p>isOpen is currently true.</p> : <p>isOpen is currently false.</p>}
-      <Button color="primary" block onClick={() => toggleNavbar(!isOpen)}>
-        Toggle
-      </Button>
-    </div>
+    <Navbar color="dark" dark expand="md">
+      <NavbarBrand href="/">pacien.tech</NavbarBrand>
+      <NavbarToggler onClick={() => toggleNavbar(!isOpen)} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <NavLink className={styles.LoginButton}>Log In</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink className={styles.RegisterButton}>Register</NavLink>
+          </NavItem>
+        </Nav>
+      </Collapse>
+    </Navbar>
   );
 };
 

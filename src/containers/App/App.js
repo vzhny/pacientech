@@ -8,7 +8,7 @@ import styles from './App.module.scss';
 const App = () => (
   <div className={styles.App}>
     <Navigation />
-    <Router>
+    <Router className={styles.Main}>
       <Landing path="/" />
       <NotFound default />
     </Router>
