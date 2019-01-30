@@ -1,6 +1,5 @@
 import React from 'react';
-import PacientechLogo from '@/images/pacientech_logo.png';
 
-const Landing = () => <img src={PacientechLogo} alt="Pacientech Logo" />;
+const Landing = () => <h1>Landing Page</h1>;
 
 export default Landing;
