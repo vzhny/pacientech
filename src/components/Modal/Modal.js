@@ -1,29 +1,40 @@
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { Button, Modal as BootstrapModal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Loader from '@/components/Loader/Loader';
 import PropTypes from 'prop-types';
-// import styles from './Modal.module.scss';
 
-const modalRoot = document.getElementById('modal-root');
+const Modal = ({ title, confirmBtn, content, modalVisible, toggleModal }) => {
+  useEffect(() => {}, [title, confirmBtn, content]);
 
-const Modal = ({ children }) => {
-  const modalNode = document.createElement('div');
-
-  useEffect(() => {
-    modalRoot.appendChild(modalNode);
-
-    return modalRoot.removeChild(modalNode);
-  });
-
-  return ReactDOM.createPortal(
-    <div>
-      <p>Modal Component</p>
-    </div>,
-    modalNode
+  return (
+    <BootstrapModal isOpen={modalVisible} centered>
+      <ModalHeader>{title}</ModalHeader>
+      <ModalBody>
+        <Loader />
+        {content}
+      </ModalBody>
+      <ModalFooter>
+        <Button color="primary" onClick={() => toggleModal()}>
+          {confirmBtn}
+        </Button>
+        <Button color="secondary" onClick={() => toggleModal()}>
+          Cancel
+        </Button>
+      </ModalFooter>
+    </BootstrapModal>
   );
 };
 
+Modal.defaultProps = {
+  modalVisible: false,
+};
+
 Modal.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  title: PropTypes.string.isRequired,
+  confirmBtn: PropTypes.string.isRequired,
+  modalVisible: PropTypes.bool,
+  toggleModal: PropTypes.func.isRequired,
+  content: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
 export default Modal;
