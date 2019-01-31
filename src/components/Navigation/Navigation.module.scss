@@ -1,9 +1,10 @@
-.LoginButton {
+.LogInButton {
   &:hover {
     cursor: pointer;
   }
 }
 
+.LogOutButton,
 .RegisterButton {
   color: #fff !important;
 
