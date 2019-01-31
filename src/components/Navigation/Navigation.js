@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { navigate } from '@reach/router';
 import {
   Container,
   Navbar,
@@ -19,12 +20,14 @@ const Navigation = () => {
   const logInUser = () => {
     setTimeout(() => {
       updateAuthStatus(true);
+      navigate('/dashboard');
     }, 2000);
   };
 
   const logOutUser = () => {
     setTimeout(() => {
       updateAuthStatus(false);
+      navigate('/');
     }, 2000);
   };
 
