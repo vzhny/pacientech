@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const AuthContext = React.createContext();
+export const AuthContext = React.createContext([false, () => {}]);
 
 export const AuthConsumer = AuthContext.Consumer;
 
 export const AuthProvider = ({ children }) => {
   const [authStatus, updateAuthStatus] = useState(false);
-  const value = { authStatus, updateAuthStatus };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={[authStatus, updateAuthStatus]}>{children}</AuthContext.Provider>
+  );
 };
 
 AuthProvider.propTypes = {

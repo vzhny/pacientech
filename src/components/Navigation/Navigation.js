@@ -14,7 +14,7 @@ import styles from './Navigation.module.scss';
 
 const Navigation = () => {
   const [isOpen, toggleNavbar] = useState(false);
-  const { authStatus, updateAuthStatus } = useContext(AuthContext);
+  const [authStatus, updateAuthStatus] = useContext(AuthContext);
 
   const logInUser = () => {
     setTimeout(() => {
