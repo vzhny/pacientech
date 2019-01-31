@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { UserConsumer } from './UserContext';
 
 const PrivateRoute = ({ component: Component }) => (
-  <UserConsumer>
-    {({ user, setUser }) => (user ? <Component /> : <h1>Not logged in!</h1>)}
-  </UserConsumer>
+  <UserConsumer>{({ user }) => (user ? <Component /> : <h1>Not logged in!</h1>)}</UserConsumer>
 );
 
 PrivateRoute.propTypes = {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const UserContext = React.createContext();
+export const UserContext = React.createContext();
 
 export const UserConsumer = UserContext.Consumer;
 
