@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 const UserContext = React.createContext();
 
+export const UserConsumer = UserContext.Consumer;
+
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null); // eslint-disable-line
 
