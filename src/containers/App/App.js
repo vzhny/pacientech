@@ -1,17 +1,17 @@
 import React from 'react';
 import { Router } from '@reach/router';
 import { Container } from 'reactstrap';
+import PrivateRoute from '@/auth/PrivateRoute';
+import { AuthProvider } from '@/auth/AuthContext';
 import Navigation from '@/components/Navigation/Navigation';
 import Landing from '@/pages/Landing/Landing';
 import Dashboard from '@/pages/Dashboard/Dashboard';
 import NotFound from '@/pages/NotFound/NotFound';
 import styles from './App.module.scss';
-import PrivateRoute from '@/auth/PrivateRoute';
-import { UserProvider } from '@/auth/UserContext';
 
 const App = () => {
   return (
-    <UserProvider>
+    <AuthProvider>
       <Navigation />
       <Container>
         <Router className={styles.Main}>
@@ -20,7 +20,7 @@ const App = () => {
           <NotFound default />
         </Router>
       </Container>
-    </UserProvider>
+    </AuthProvider>
   );
 };
 

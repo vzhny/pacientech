@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { UserConsumer } from './UserContext';
+import { AuthContext } from './AuthContext';
 
-const PrivateRoute = ({ component: Component }) => (
-  <UserConsumer>{({ user }) => (user ? <Component /> : <h1>Not logged in!</h1>)}</UserConsumer>
-);
+const PrivateRoute = ({ component: Component }) => {
+  const { authStatus } = useContext(AuthContext);
+
+  return authStatus ? <Component /> : <h1>Not logged in!</h1>;
+};
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,

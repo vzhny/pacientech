@@ -9,22 +9,22 @@ import {
   NavLink,
   Collapse,
 } from 'reactstrap';
-import { UserContext } from '@/auth/UserContext';
+import { AuthContext } from '@/auth/AuthContext';
 import styles from './Navigation.module.scss';
 
 const Navigation = () => {
   const [isOpen, toggleNavbar] = useState(false);
-  const { user, setUser } = useContext(UserContext);
+  const { authStatus, updateAuthStatus } = useContext(AuthContext);
 
   const logInUser = () => {
     setTimeout(() => {
-      setUser('user');
+      updateAuthStatus(true);
     }, 2000);
   };
 
   const logOutUser = () => {
     setTimeout(() => {
-      setUser(null);
+      updateAuthStatus(false);
     }, 2000);
   };
 
@@ -35,7 +35,7 @@ const Navigation = () => {
         <NavbarToggler onClick={() => toggleNavbar(!isOpen)} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            {user ? (
+            {authStatus ? (
               <NavItem>
                 <NavLink className={styles.LogOutButton} onClick={() => logOutUser()}>
                   Log Out
@@ -59,7 +59,5 @@ const Navigation = () => {
     </Navbar>
   );
 };
-
-Navigation.propTypes = {};
 
 export default Navigation;
