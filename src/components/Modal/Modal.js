@@ -22,15 +22,19 @@ const Modal = ({ title, confirmBtn, content, modalVisible, toggleModal }) => {
 };
 
 Modal.defaultProps = {
+  title: '',
+  confirmBtn: 'OK',
+  content: '',
   modalVisible: false,
+  toggleModal: modalVisible => !modalVisible,
 };
 
 Modal.propTypes = {
-  title: PropTypes.string.isRequired,
-  confirmBtn: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  confirmBtn: PropTypes.string,
+  content: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   modalVisible: PropTypes.bool,
-  toggleModal: PropTypes.func.isRequired,
-  content: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  toggleModal: PropTypes.func,
 };
 
 export default Modal;

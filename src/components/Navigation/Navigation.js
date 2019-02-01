@@ -17,11 +17,7 @@ const Navigation = () => {
   const [isOpen, toggleNavbar] = useState(false);
   const [modalVisible, toggleModal] = useState(false);
   const [authStatus] = useContext(AuthContext);
-  const [modal, setModalProps] = useState({
-    title: 'Test Title',
-    confirmBtn: 'Confirm',
-    content: <p>Test Content</p>,
-  });
+  const [modal, setModalProps] = useState({});
 
   const logInUser = () => {
     setModalProps({
