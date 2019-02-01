@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Button, Modal as BootstrapModal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import Loader from '@/components/Loader/Loader';
 import PropTypes from 'prop-types';
 
 const Modal = ({ title, confirmBtn, content, modalVisible, toggleModal }) => {
@@ -8,11 +7,8 @@ const Modal = ({ title, confirmBtn, content, modalVisible, toggleModal }) => {
 
   return (
     <BootstrapModal isOpen={modalVisible} centered>
-      <ModalHeader>{title}</ModalHeader>
-      <ModalBody>
-        <Loader />
-        {content}
-      </ModalBody>
+      <ModalHeader toggle={() => toggleModal()}>{title}</ModalHeader>
+      <ModalBody>{content}</ModalBody>
       <ModalFooter>
         <Button color="primary" onClick={() => toggleModal()}>
           {confirmBtn}
