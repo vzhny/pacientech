@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Button, Modal as BootstrapModal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import Loader from '@/components/Loader/Loader';
 import PropTypes from 'prop-types';
 
 const Modal = ({ title, confirmBtn, content, modalVisible, toggleModal }) => {
@@ -8,11 +7,8 @@ const Modal = ({ title, confirmBtn, content, modalVisible, toggleModal }) => {
 
   return (
     <BootstrapModal isOpen={modalVisible} centered>
-      <ModalHeader>{title}</ModalHeader>
-      <ModalBody>
-        <Loader />
-        {content}
-      </ModalBody>
+      <ModalHeader toggle={() => toggleModal()}>{title}</ModalHeader>
+      <ModalBody>{content}</ModalBody>
       <ModalFooter>
         <Button color="primary" onClick={() => toggleModal()}>
           {confirmBtn}
@@ -26,15 +22,19 @@ const Modal = ({ title, confirmBtn, content, modalVisible, toggleModal }) => {
 };
 
 Modal.defaultProps = {
+  title: '',
+  confirmBtn: 'OK',
+  content: '',
   modalVisible: false,
+  toggleModal: modalVisible => !modalVisible,
 };
 
 Modal.propTypes = {
-  title: PropTypes.string.isRequired,
-  confirmBtn: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  confirmBtn: PropTypes.string,
+  content: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   modalVisible: PropTypes.bool,
-  toggleModal: PropTypes.func.isRequired,
-  content: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  toggleModal: PropTypes.func,
 };
 
 export default Modal;

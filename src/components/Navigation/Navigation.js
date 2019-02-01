@@ -17,22 +17,23 @@ const Navigation = () => {
   const [isOpen, toggleNavbar] = useState(false);
   const [modalVisible, toggleModal] = useState(false);
   const [authStatus] = useContext(AuthContext);
-
-  let modalTitle = 'Test Title';
-  let modalConfirmBtn = 'Confirm';
-  let modalContent = <p>Test Content</p>;
+  const [modal, setModalProps] = useState({});
 
   const logInUser = () => {
-    modalTitle = 'Welcome Back!';
-    modalConfirmBtn = 'Log In';
-    modalContent = <p>Login Form Goes Here</p>;
+    setModalProps({
+      title: 'Welcome Back!',
+      confirmBtn: 'Log In',
+      content: <p>Login Form</p>,
+    });
     toggleModal(!modalVisible);
   };
 
   const registerUser = () => {
-    modalTitle = 'Register for an Account';
-    modalConfirmBtn = 'Register';
-    modalContent = <p>Register Form Goes Here</p>;
+    setModalProps({
+      title: 'Create an Account',
+      confirmBtn: 'Register',
+      content: <p>Register Form</p>,
+    });
     toggleModal(!modalVisible);
   };
 
@@ -71,9 +72,9 @@ const Navigation = () => {
         </Container>
       </Navbar>
       <Modal
-        title={modalTitle}
-        confirmBtn={modalConfirmBtn}
-        content={modalContent}
+        title={modal.title}
+        confirmBtn={modal.confirmBtn}
+        content={modal.content}
         modalVisible={modalVisible}
         toggleModal={toggleModal}
       />
