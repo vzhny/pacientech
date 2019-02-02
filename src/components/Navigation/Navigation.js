@@ -23,8 +23,7 @@ const Navigation = () => {
   const logInUser = () => {
     setModalProps({
       title: 'Welcome Back!',
-      confirmBtn: 'Log In',
-      content: <LoginForm />,
+      content: <LoginForm toggleModal={toggleModal} />,
     });
     toggleModal(!modalVisible);
   };
@@ -32,7 +31,6 @@ const Navigation = () => {
   const registerUser = () => {
     setModalProps({
       title: 'Create an Account',
-      confirmBtn: 'Register',
       content: <p>Register Form</p>,
     });
     toggleModal(!modalVisible);
@@ -74,7 +72,6 @@ const Navigation = () => {
       </Navbar>
       <Modal
         title={modal.title}
-        confirmBtn={modal.confirmBtn}
         content={modal.content}
         modalVisible={modalVisible}
         toggleModal={toggleModal}
