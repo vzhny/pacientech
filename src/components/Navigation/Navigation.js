@@ -10,6 +10,7 @@ import {
   Collapse,
 } from 'reactstrap';
 import Modal from '@/components/Modal/Modal';
+import LoginForm from '@/components/LoginForm/LoginForm';
 import { AuthContext } from '@/auth/AuthContext';
 import styles from './Navigation.module.scss';
 
@@ -23,7 +24,7 @@ const Navigation = () => {
     setModalProps({
       title: 'Welcome Back!',
       confirmBtn: 'Log In',
-      content: <p>Login Form</p>,
+      content: <LoginForm />,
     });
     toggleModal(!modalVisible);
   };
