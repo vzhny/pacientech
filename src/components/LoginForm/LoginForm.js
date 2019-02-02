@@ -1,35 +1,62 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { navigate } from '@reach/router';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import PropTypes from 'prop-types'; // eslint-disable-line
-import styles from './LoginForm.module.scss'; // eslint-disable-line
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Loader from '@/components/Loader/Loader';
+import { AuthContext } from '@/auth/AuthContext';
 
 const LoginForm = ({ toggleModal }) => {
-  const [payload, setPayload] = useState({
-    email: 'johndoe@gmail.com',
-    password: 'abc123',
-  });
+  const [authStatus, updateAuthStatus] = useContext(AuthContext); // eslint-disable-line
 
   return (
-    <Form
-      onSubmit={e => {
-        e.preventDefault();
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      onSubmit={(values, { setSubmitting, setErrors }) => {
+        setTimeout(() => {
+          // TODO: add axios call to the pacientech api to log in the user.
+          toggleModal();
+          updateAuthStatus(true);
+          navigate('/dashboard');
+          setSubmitting(false);
+        }, 2000);
       }}
-    >
-      <FormGroup>
-        <Label for="email">Email Address</Label>
-        <Input type="email" name="email" id="email" placeholder="johndoe@gmail.com" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="password">Password</Label>
-        <Input type="password" name="password" id="password" placeholder="●●●●●●●●" />
-      </FormGroup>
-      <Button color="primary" className="mr-3">
-        Submit
-      </Button>
-      <Button color="secondary" onClick={() => toggleModal()}>
-        Cancel
-      </Button>
-    </Form>
+      render={({ values, errors, handleSubmit, handleChange, handleBlur, isSubmitting }) => (
+        <Form onSubmit={e => handleSubmit(e)}>
+          <FormGroup>
+            <Label for="email">Email Address</Label>
+            <Input
+              type="email"
+              name="email"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.email}
+              placeholder="johndoe@gmail.com"
+              disabled={isSubmitting}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="password">Password</Label>
+            <Input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.password}
+              placeholder="●●●●●●●●"
+              disabled={isSubmitting}
+            />
+          </FormGroup>
+          {isSubmitting ? <Loader /> : null}
+          <Button type="submit" color="primary" className="mr-3" disabled={isSubmitting}>
+            Submit
+          </Button>
+          <Button color="secondary" onClick={() => toggleModal()} disabled={isSubmitting}>
+            Cancel
+          </Button>
+        </Form>
+      )}
+    />
   );
 };
 
