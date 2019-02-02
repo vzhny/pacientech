@@ -25,7 +25,8 @@
     "prop-types": "^15.6.2",
     "react": "16.8.0-alpha.1",
     "react-dom": "16.8.0-alpha.1",
-    "reactstrap": "^7.1.0"
+    "reactstrap": "^7.1.0",
+    "yup": "^0.26.10"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",

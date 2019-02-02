@@ -1,10 +1,18 @@
 import React, { useContext } from 'react';
 import { navigate } from '@reach/router';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, FormFeedback, Label, Input, Button } from 'reactstrap';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
+import * as Yup from 'yup';
 import Loader from '@/components/Loader/Loader';
 import { AuthContext } from '@/auth/AuthContext';
+
+const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Invalid email!')
+    .required('Email address is required.'),
+  password: Yup.string().required('Password is required.'),
+});
 
 const LoginForm = ({ toggleModal }) => {
   const [authStatus, updateAuthStatus] = useContext(AuthContext); // eslint-disable-line
@@ -12,6 +20,7 @@ const LoginForm = ({ toggleModal }) => {
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
+      validationSchema={LoginSchema}
       onSubmit={(values, { setSubmitting, setErrors }) => {
         setTimeout(() => {
           // TODO: add axios call to the pacientech api to log in the user.
@@ -21,19 +30,32 @@ const LoginForm = ({ toggleModal }) => {
           setSubmitting(false);
         }, 2000);
       }}
-      render={({ values, errors, handleSubmit, handleChange, handleBlur, isSubmitting }) => (
+      render={({
+        values,
+        errors,
+        touched,
+        handleSubmit,
+        handleChange,
+        handleBlur,
+        isSubmitting,
+      }) => (
         <Form onSubmit={e => handleSubmit(e)}>
           <FormGroup>
             <Label for="email">Email Address</Label>
             <Input
-              type="email"
+              type="text"
               name="email"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.email}
               placeholder="johndoe@gmail.com"
               disabled={isSubmitting}
+              valid={!errors.email && touched.email}
+              invalid={!!errors.email}
             />
+            {errors.email && touched.email ? (
+              <FormFeedback>The entered email address is invalid.</FormFeedback>
+            ) : null}
           </FormGroup>
           <FormGroup>
             <Label for="password">Password</Label>
@@ -45,11 +67,16 @@ const LoginForm = ({ toggleModal }) => {
               value={values.password}
               placeholder="●●●●●●●●"
               disabled={isSubmitting}
+              valid={!errors.password && touched.password}
+              invalid={!!errors.password}
             />
+            {errors.password && touched.password ? (
+              <FormFeedback>Please enter a password.</FormFeedback>
+            ) : null}
           </FormGroup>
           {isSubmitting ? <Loader /> : null}
           <Button type="submit" color="primary" className="mr-3" disabled={isSubmitting}>
-            Submit
+            Log In
           </Button>
           <Button color="secondary" onClick={() => toggleModal()} disabled={isSubmitting}>
             Cancel
