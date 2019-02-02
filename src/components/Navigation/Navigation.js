@@ -10,6 +10,7 @@ import {
   Collapse,
 } from 'reactstrap';
 import Modal from '@/components/Modal/Modal';
+import LoginForm from '@/components/LoginForm/LoginForm';
 import { AuthContext } from '@/auth/AuthContext';
 import styles from './Navigation.module.scss';
 
@@ -22,8 +23,7 @@ const Navigation = () => {
   const logInUser = () => {
     setModalProps({
       title: 'Welcome Back!',
-      confirmBtn: 'Log In',
-      content: <p>Login Form</p>,
+      content: <LoginForm toggleModal={toggleModal} />,
     });
     toggleModal(!modalVisible);
   };
@@ -31,7 +31,6 @@ const Navigation = () => {
   const registerUser = () => {
     setModalProps({
       title: 'Create an Account',
-      confirmBtn: 'Register',
       content: <p>Register Form</p>,
     });
     toggleModal(!modalVisible);
@@ -73,7 +72,6 @@ const Navigation = () => {
       </Navbar>
       <Modal
         title={modal.title}
-        confirmBtn={modal.confirmBtn}
         content={modal.content}
         modalVisible={modalVisible}
         toggleModal={toggleModal}
