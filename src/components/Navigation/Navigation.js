@@ -21,7 +21,7 @@ const Navigation = () => {
   const [authStatus, updateAuthStatus] = useContext(AuthContext);
   const [modal, setModalProps] = useState({});
 
-  const logInUser = () => {
+  const openLoginFormModal = () => {
     setModalProps({
       title: 'Welcome Back!',
       content: <LoginForm toggleModal={toggleModal} />,
@@ -29,7 +29,7 @@ const Navigation = () => {
     toggleModal(!modalVisible);
   };
 
-  const registerUser = () => {
+  const openRegisterFormModal = () => {
     setModalProps({
       title: 'Create an Account',
       content: <RegisterForm toggleModal={toggleModal} />,
@@ -60,12 +60,15 @@ const Navigation = () => {
               ) : (
                 <>
                   <NavItem>
-                    <NavLink className={styles.LogInButton} onClick={() => logInUser()}>
+                    <NavLink className={styles.LogInButton} onClick={() => openLoginFormModal()}>
                       Log In
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink className={styles.RegisterButton} onClick={() => registerUser()}>
+                    <NavLink
+                      className={styles.RegisterButton}
+                      onClick={() => openRegisterFormModal()}
+                    >
                       Register
                     </NavLink>
                   </NavItem>
