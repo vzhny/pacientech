@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from 'react-testing-library';
-import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 
-describe('LoginForm', () => {
+describe('RegisterForm', () => {
   it('should render without crashing', () => {
     const mockCallback = jest.fn();
-    render(<LoginForm toggleModal={mockCallback} />);
+    render(<RegisterForm toggleModal={mockCallback} />);
   });
 });
