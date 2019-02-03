@@ -47,7 +47,7 @@ const Navigation = () => {
     <>
       <Navbar color="dark" dark expand="md">
         <Container>
-          <NavbarBrand href="/">pacien.tech</NavbarBrand>
+          <NavbarBrand href="/">pacientech</NavbarBrand>
           <NavbarToggler onClick={() => toggleNavbar(!isOpen)} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
