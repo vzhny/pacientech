@@ -9,15 +9,17 @@ import { AuthContext } from '@/auth/AuthContext';
 
 const RegisterSchema = Yup.object().shape({
   firstName: Yup.string()
-    .max(15)
+    .max(15, 'Your entered first name must be less than 15 characters.')
     .required('A first name is required.'),
   lastName: Yup.string()
-    .max(15)
+    .max(15, 'You entered last name must be less than 15 characters.')
     .required('A first name is required.'),
   email: Yup.string()
     .email('Invalid email!')
-    .required('Email address is required.'),
-  password: Yup.string().required('Password is required.'),
+    .required('An email address is required.'),
+  password: Yup.string()
+    .min(7, 'Your password must be greater than 6 characters.')
+    .required('A password is required.'),
 });
 
 const RegisterForm = ({ toggleModal }) => {
@@ -62,7 +64,7 @@ const RegisterForm = ({ toggleModal }) => {
                   invalid={!!errors.firstName}
                 />
                 {errors.firstName && touched.firstName ? (
-                  <FormFeedback>A first name is required.</FormFeedback>
+                  <FormFeedback>{errors.firstName}</FormFeedback>
                 ) : null}
               </FormGroup>
             </Col>
@@ -81,7 +83,7 @@ const RegisterForm = ({ toggleModal }) => {
                   invalid={!!errors.lastName}
                 />
                 {errors.lastName && touched.lastName ? (
-                  <FormFeedback>A last name is required.</FormFeedback>
+                  <FormFeedback>{errors.lastName}</FormFeedback>
                 ) : null}
               </FormGroup>
             </Col>
@@ -99,9 +101,7 @@ const RegisterForm = ({ toggleModal }) => {
               valid={!errors.email && touched.email}
               invalid={!!errors.email}
             />
-            {errors.email && touched.email ? (
-              <FormFeedback>The entered email address is invalid.</FormFeedback>
-            ) : null}
+            {errors.email && touched.email ? <FormFeedback>{errors.email}</FormFeedback> : null}
           </FormGroup>
           <FormGroup>
             <Label for="password">Password</Label>
@@ -117,7 +117,7 @@ const RegisterForm = ({ toggleModal }) => {
               invalid={!!errors.password}
             />
             {errors.password && touched.password ? (
-              <FormFeedback>Please enter a password.</FormFeedback>
+              <FormFeedback>{errors.password}</FormFeedback>
             ) : null}
           </FormGroup>
           {isSubmitting ? <Loader /> : null}

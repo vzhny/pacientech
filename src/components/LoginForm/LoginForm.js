@@ -10,8 +10,8 @@ import { AuthContext } from '@/auth/AuthContext';
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email!')
-    .required('Email address is required.'),
-  password: Yup.string().required('Password is required.'),
+    .required('An email address is required.'),
+  password: Yup.string().required('A password is required.'),
 });
 
 const LoginForm = ({ toggleModal }) => {
@@ -53,9 +53,7 @@ const LoginForm = ({ toggleModal }) => {
               valid={!errors.email && touched.email}
               invalid={!!errors.email}
             />
-            {errors.email && touched.email ? (
-              <FormFeedback>The entered email address is invalid.</FormFeedback>
-            ) : null}
+            {errors.email && touched.email ? <FormFeedback>{errors.email}</FormFeedback> : null}
           </FormGroup>
           <FormGroup>
             <Label for="password">Password</Label>
@@ -71,7 +69,7 @@ const LoginForm = ({ toggleModal }) => {
               invalid={!!errors.password}
             />
             {errors.password && touched.password ? (
-              <FormFeedback>Please enter a password.</FormFeedback>
+              <FormFeedback>{errors.password}</FormFeedback>
             ) : null}
           </FormGroup>
           {isSubmitting ? <Loader /> : null}
