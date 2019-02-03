@@ -18,7 +18,7 @@ import styles from './Navigation.module.scss';
 const Navigation = () => {
   const [isOpen, toggleNavbar] = useState(false);
   const [modalVisible, toggleModal] = useState(false);
-  const [authStatus] = useContext(AuthContext);
+  const [authStatus, updateAuthStatus] = useContext(AuthContext);
   const [modal, setModalProps] = useState({});
 
   const logInUser = () => {
@@ -37,7 +37,11 @@ const Navigation = () => {
     toggleModal(!modalVisible);
   };
 
-  const logOutUser = () => {};
+  const logOutUser = () => {
+    setTimeout(() => {
+      updateAuthStatus(false);
+    }, 1000);
+  };
 
   return (
     <>
