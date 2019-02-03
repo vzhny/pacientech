@@ -3,10 +3,30 @@ import { Modal as BootstrapModal, ModalHeader, ModalBody } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 const Modal = ({ title, content, modalVisible, toggleModal }) => {
-  useEffect(() => {}, [title, content]);
+  const handleEscKeyPress = e => {
+    const keys = {
+      27: () => {
+        e.preventDefault();
+        toggleModal();
+        window.removeEventListener('keyup', handleEscKeyPress);
+      },
+    };
+
+    if (keys[e.keyCode]) {
+      keys[e.keyCode]();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keyup', handleEscKeyPress);
+
+    return () => {
+      window.removeEventListener('keyup', handleEscKeyPress);
+    };
+  }, [title, content]);
 
   return (
-    <BootstrapModal isOpen={modalVisible} centered>
+    <BootstrapModal isOpen={modalVisible} centered data-testid="modal-backdrop">
       <ModalHeader toggle={() => toggleModal()}>{title}</ModalHeader>
       <ModalBody>{content}</ModalBody>
     </BootstrapModal>
