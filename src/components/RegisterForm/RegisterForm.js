@@ -52,7 +52,7 @@ const RegisterForm = ({ toggleModal }) => {
           <Row form>
             <Col md={6}>
               <FormGroup>
-                <Label className={styles.DarkLabel} for="email">
+                <Label className="text-primary" for="email">
                   First Name
                 </Label>
                 <Input
@@ -74,7 +74,7 @@ const RegisterForm = ({ toggleModal }) => {
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label className={styles.DarkLabel} for="email">
+                <Label className="text-primary" for="email">
                   Last Name
                 </Label>
                 <Input
@@ -96,7 +96,7 @@ const RegisterForm = ({ toggleModal }) => {
             </Col>
           </Row>
           <FormGroup>
-            <Label className={styles.DarkLabel} for="email">
+            <Label className="text-primary" for="email">
               Email Address
             </Label>
             <Input
@@ -114,7 +114,7 @@ const RegisterForm = ({ toggleModal }) => {
             {errors.email && touched.email ? <FormFeedback>{errors.email}</FormFeedback> : null}
           </FormGroup>
           <FormGroup>
-            <Label className={styles.DarkLabel} for="password">
+            <Label className="text-primary" for="password">
               Password
             </Label>
             <Input
