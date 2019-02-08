@@ -19,4 +19,28 @@ module.exports = merge(webpackBaseConfig, {
       root: path.resolve(__dirname, '..'),
     }),
   ],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: [
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-proposal-optional-chaining',
+              [
+                'babel-plugin-transform-react-remove-prop-types',
+                {
+                  removeImport: true,
+                },
+              ],
+            ],
+          },
+        },
+      },
+    ],
+  },
 });
