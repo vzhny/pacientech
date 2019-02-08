@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import Loader from '@/components/Loader/Loader';
 import { AuthContext } from '@/auth/AuthContext';
+import styles from './LoginForm.module.scss';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -41,8 +42,11 @@ const LoginForm = ({ toggleModal }) => {
       }) => (
         <Form onSubmit={e => handleSubmit(e)}>
           <FormGroup>
-            <Label for="email">Email Address</Label>
+            <Label className={styles.DarkLabel} for="email">
+              Email Address
+            </Label>
             <Input
+              className={styles.InputBorder}
               type="text"
               name="email"
               onChange={handleChange}
@@ -56,8 +60,11 @@ const LoginForm = ({ toggleModal }) => {
             {errors.email && touched.email ? <FormFeedback>{errors.email}</FormFeedback> : null}
           </FormGroup>
           <FormGroup>
-            <Label for="password">Password</Label>
+            <Label className={styles.DarkLabel} for="password">
+              Password
+            </Label>
             <Input
+              className={styles.InputBorder}
               type="password"
               name="password"
               onChange={handleChange}

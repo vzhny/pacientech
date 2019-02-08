@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import Loader from '@/components/Loader/Loader';
 import { AuthContext } from '@/auth/AuthContext';
+import styles from './RegisterForm.module.scss';
 
 const RegisterSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -13,7 +14,7 @@ const RegisterSchema = Yup.object().shape({
     .required('A first name is required.'),
   lastName: Yup.string()
     .max(15, 'You entered last name must be less than 15 characters.')
-    .required('A first name is required.'),
+    .required('A last name is required.'),
   email: Yup.string()
     .email('Invalid email!')
     .required('An email address is required.'),
@@ -51,8 +52,11 @@ const RegisterForm = ({ toggleModal }) => {
           <Row form>
             <Col md={6}>
               <FormGroup>
-                <Label for="email">First Name</Label>
+                <Label className={styles.DarkLabel} for="email">
+                  First Name
+                </Label>
                 <Input
+                  className={styles.InputBorder}
                   type="text"
                   name="firstName"
                   onChange={handleChange}
@@ -70,8 +74,11 @@ const RegisterForm = ({ toggleModal }) => {
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label for="email">Last Name</Label>
+                <Label className={styles.DarkLabel} for="email">
+                  Last Name
+                </Label>
                 <Input
+                  className={styles.InputBorder}
                   type="text"
                   name="lastName"
                   onChange={handleChange}
@@ -89,8 +96,11 @@ const RegisterForm = ({ toggleModal }) => {
             </Col>
           </Row>
           <FormGroup>
-            <Label for="email">Email Address</Label>
+            <Label className={styles.DarkLabel} for="email">
+              Email Address
+            </Label>
             <Input
+              className={styles.InputBorder}
               type="text"
               name="email"
               onChange={handleChange}
@@ -104,8 +114,11 @@ const RegisterForm = ({ toggleModal }) => {
             {errors.email && touched.email ? <FormFeedback>{errors.email}</FormFeedback> : null}
           </FormGroup>
           <FormGroup>
-            <Label for="password">Password</Label>
+            <Label className={styles.DarkLabel} for="password">
+              Password
+            </Label>
             <Input
+              className={styles.InputBorder}
               type="password"
               name="password"
               onChange={handleChange}
