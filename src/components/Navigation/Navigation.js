@@ -18,10 +18,10 @@ import styles from './Navigation.module.scss';
 const Navigation = () => {
   const [isOpen, toggleNavbar] = useState(false);
   const [modalVisible, toggleModal] = useState(false);
-  const [authStatus] = useContext(AuthContext);
+  const [authStatus, updateAuthStatus] = useContext(AuthContext);
   const [modal, setModalProps] = useState({});
 
-  const logInUser = () => {
+  const openLoginFormModal = () => {
     setModalProps({
       title: 'Welcome Back!',
       content: <LoginForm toggleModal={toggleModal} />,
@@ -29,7 +29,7 @@ const Navigation = () => {
     toggleModal(!modalVisible);
   };
 
-  const registerUser = () => {
+  const openRegisterFormModal = () => {
     setModalProps({
       title: 'Create an Account',
       content: <RegisterForm toggleModal={toggleModal} />,
@@ -37,13 +37,17 @@ const Navigation = () => {
     toggleModal(!modalVisible);
   };
 
-  const logOutUser = () => {};
+  const logOutUser = () => {
+    setTimeout(() => {
+      updateAuthStatus(false);
+    }, 1000);
+  };
 
   return (
     <>
       <Navbar color="dark" dark expand="md">
         <Container>
-          <NavbarBrand href="/">pacien.tech</NavbarBrand>
+          <NavbarBrand href="/">pacientech</NavbarBrand>
           <NavbarToggler onClick={() => toggleNavbar(!isOpen)} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -56,12 +60,15 @@ const Navigation = () => {
               ) : (
                 <>
                   <NavItem>
-                    <NavLink className={styles.LogInButton} onClick={() => logInUser()}>
+                    <NavLink className={styles.LogInButton} onClick={() => openLoginFormModal()}>
                       Log In
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink className={styles.RegisterButton} onClick={() => registerUser()}>
+                    <NavLink
+                      className={styles.RegisterButton}
+                      onClick={() => openRegisterFormModal()}
+                    >
                       Register
                     </NavLink>
                   </NavItem>
