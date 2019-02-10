@@ -19,13 +19,15 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "axios": "^0.18.0",
     "bootswatch": "^4.2.1",
-    "classnames": "^2.2.6",
+    "clsx": "^1.0.2",
     "formik": "^1.4.3",
     "prop-types": "^15.6.2",
-    "react": "16.8.0-alpha.1",
-    "react-dom": "16.8.0-alpha.1",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "reactstrap": "^7.1.0",
+    "store": "^2.0.12",
     "yup": "^0.26.10"
   },
   "devDependencies": {
