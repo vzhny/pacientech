@@ -1,11 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useLayoutEffect, useContext } from 'react';
+import { navigate } from '@reach/router';
 import PropTypes from 'prop-types';
+import Landing from '@/pages/Landing/Landing';
 import { AuthContext } from './AuthContext';
 
-const PrivateRoute = ({ component: Component }) => {
-  const [authStatus] = useContext(AuthContext);
+const Redirect = () => {
+  useLayoutEffect(() => {
+    navigate('/');
+  });
 
-  return authStatus ? <Component /> : <h1>Not logged in!</h1>;
+  return <Landing />;
+};
+
+const PrivateRoute = ({ component: Component }) => {
+  const [auth] = useContext(AuthContext);
+
+  return auth.status ? <Component /> : <Redirect />;
 };
 
 PrivateRoute.propTypes = {
