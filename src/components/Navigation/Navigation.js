@@ -55,7 +55,7 @@ const Navigation = () => {
 
   return (
     <>
-      <Navbar color="dark" dark expand="md">
+      <Navbar dark expand="md" className={clsx('bg-primary', styles.Shadow)}>
         <Container>
           <NavbarBrand
             tag={() => (
