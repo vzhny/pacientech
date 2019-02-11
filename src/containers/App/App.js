@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import { Container } from 'reactstrap';
 import PrivateRoute from '@/auth/PrivateRoute';
 import { AuthProvider } from '@/auth/AuthContext';
 import Navigation from '@/components/Navigation/Navigation';
@@ -13,13 +12,11 @@ const App = () => {
   return (
     <AuthProvider>
       <Navigation />
-      <Container>
-        <Router className={styles.Main}>
-          <Landing path="/" />
-          <PrivateRoute component={Dashboard} path="/dashboard" />
-          <NotFound default />
-        </Router>
-      </Container>
+      <Router className={styles.Main}>
+        <Landing path="/" />
+        <PrivateRoute component={Dashboard} path="/dashboard" />
+        <NotFound default />
+      </Router>
     </AuthProvider>
   );
 };
