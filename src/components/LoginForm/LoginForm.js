@@ -23,7 +23,6 @@ const LoginForm = ({ toggleModal }) => {
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
-      validationSchema={LoginSchema}
       onSubmit={(values, { setSubmitting, setErrors }) => {
         axios
           .post('/auth/login', values)
@@ -55,15 +54,15 @@ const LoginForm = ({ toggleModal }) => {
               </Label>
               <Input
                 className={styles.InputBorder}
-                type="text"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                placeholder="johndoe@gmail.com"
                 disabled={isSubmitting}
-                valid={!errors.email && touched.email}
                 invalid={!!errors.email}
+                name="email"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                placeholder="johndoe@gmail.com"
+                type="text"
+                valid={!errors.email && touched.email}
+                value={values.email}
               />
               {errors.email && touched.email ? <FormFeedback>{errors.email}</FormFeedback> : null}
             </FormGroup>
@@ -73,29 +72,30 @@ const LoginForm = ({ toggleModal }) => {
               </Label>
               <Input
                 className={styles.InputBorder}
-                type="password"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-                placeholder="●●●●●●●●"
                 disabled={isSubmitting}
-                valid={!errors.password && touched.password}
                 invalid={!!errors.password}
+                name="password"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                placeholder="●●●●●●●●"
+                type="password"
+                valid={!errors.password && touched.password}
+                value={values.password}
               />
               {errors.password && touched.password ? (
                 <FormFeedback>{errors.password}</FormFeedback>
               ) : null}
             </FormGroup>
-            <Button type="submit" color="primary" className="mr-3" disabled={isSubmitting}>
+            <Button className="mr-3" color="primary" disabled={isSubmitting} type="submit">
               Log In
             </Button>
-            <Button color="secondary" onClick={() => toggleModal()} disabled={isSubmitting}>
+            <Button color="secondary" disabled={isSubmitting} onClick={() => toggleModal()}>
               Cancel
             </Button>
           </Form>
         )
       }
+      validationSchema={LoginSchema}
     />
   );
 };

@@ -11,7 +11,7 @@ const Landing = () => (
     <Container>
       <Row>
         <Col className="d-flex">
-          <img className={styles.Image} src={DoctorWithPatient} alt="Doctor with Patient" />
+          <img alt="Doctor with Patient" className={styles.Image} src={DoctorWithPatient} />
         </Col>
         <Col className="d-flex">
           <p className={clsx('text-primary', styles.Blurb)}>
@@ -28,12 +28,12 @@ const Landing = () => (
           </p>
         </Col>
         <Col className="d-flex">
-          <img className={styles.Image} src={Clipboards} alt="Clipboards" />
+          <img alt="Clipboards" className={styles.Image} src={Clipboards} />
         </Col>
       </Row>
       <Row>
         <Col className="d-flex">
-          <img className={styles.Image} src={DataDisplay} alt="Data Display" />
+          <img alt="Data Display" className={styles.Image} src={DataDisplay} />
         </Col>
         <Col className="d-flex">
           <p className={clsx('text-primary', styles.Blurb)}>

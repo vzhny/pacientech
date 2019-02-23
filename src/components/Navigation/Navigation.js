@@ -55,7 +55,7 @@ const Navigation = () => {
 
   return (
     <>
-      <Navbar dark expand="md" className={clsx('bg-primary', styles.Shadow)}>
+      <Navbar dark className={clsx('bg-primary', styles.Shadow)} expand="md">
         <Container>
           <NavbarBrand
             tag={() => (
@@ -65,8 +65,8 @@ const Navigation = () => {
             )}
           />
           <NavbarToggler onClick={() => toggleNavbar(!isOpen)} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+          <Collapse navbar isOpen={isOpen}>
+            <Nav navbar className="ml-auto">
               {auth.status ? (
                 <>
                   <NavItem>
@@ -111,9 +111,9 @@ const Navigation = () => {
         </Container>
       </Navbar>
       <Modal
-        title={modal.title}
         content={modal.content}
         modalVisible={modalVisible}
+        title={modal.title}
         toggleModal={toggleModal}
       />
     </>

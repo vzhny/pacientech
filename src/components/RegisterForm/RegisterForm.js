@@ -31,7 +31,6 @@ const RegisterForm = ({ toggleModal }) => {
   return (
     <Formik
       initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
-      validationSchema={RegisterSchema}
       onSubmit={(values, { setSubmitting, setErrors }) => {
         axios
           .post('/auth/register', values)
@@ -64,15 +63,15 @@ const RegisterForm = ({ toggleModal }) => {
                   </Label>
                   <Input
                     className={styles.InputBorder}
-                    type="text"
-                    name="firstName"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.firstName}
-                    placeholder="John"
                     disabled={isSubmitting}
-                    valid={!errors.firstName && touched.firstName}
                     invalid={!!errors.firstName}
+                    name="firstName"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    placeholder="John"
+                    type="text"
+                    valid={!errors.firstName && touched.firstName}
+                    value={values.firstName}
                   />
                   {errors.firstName && touched.firstName ? (
                     <FormFeedback>{errors.firstName}</FormFeedback>
@@ -86,15 +85,15 @@ const RegisterForm = ({ toggleModal }) => {
                   </Label>
                   <Input
                     className={styles.InputBorder}
-                    type="text"
-                    name="lastName"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.lastName}
-                    placeholder="Doe"
                     disabled={isSubmitting}
-                    valid={!errors.lastName && touched.lastName}
                     invalid={!!errors.lastName}
+                    name="lastName"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    placeholder="Doe"
+                    type="text"
+                    valid={!errors.lastName && touched.lastName}
+                    value={values.lastName}
                   />
                   {errors.lastName && touched.lastName ? (
                     <FormFeedback>{errors.lastName}</FormFeedback>
@@ -108,15 +107,15 @@ const RegisterForm = ({ toggleModal }) => {
               </Label>
               <Input
                 className={styles.InputBorder}
-                type="text"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                placeholder="johndoe@gmail.com"
                 disabled={isSubmitting}
-                valid={!errors.email && touched.email}
                 invalid={!!errors.email}
+                name="email"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                placeholder="johndoe@gmail.com"
+                type="text"
+                valid={!errors.email && touched.email}
+                value={values.email}
               />
               {errors.email && touched.email ? <FormFeedback>{errors.email}</FormFeedback> : null}
             </FormGroup>
@@ -126,29 +125,30 @@ const RegisterForm = ({ toggleModal }) => {
               </Label>
               <Input
                 className={styles.InputBorder}
-                type="password"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-                placeholder="●●●●●●●●"
                 disabled={isSubmitting}
-                valid={!errors.password && touched.password}
                 invalid={!!errors.password}
+                name="password"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                placeholder="●●●●●●●●"
+                type="password"
+                valid={!errors.password && touched.password}
+                value={values.password}
               />
               {errors.password && touched.password ? (
                 <FormFeedback>{errors.password}</FormFeedback>
               ) : null}
             </FormGroup>
-            <Button type="submit" color="primary" className="mr-3" disabled={isSubmitting}>
+            <Button className="mr-3" color="primary" disabled={isSubmitting} type="submit">
               Register
             </Button>
-            <Button color="secondary" onClick={() => toggleModal()} disabled={isSubmitting}>
+            <Button color="secondary" disabled={isSubmitting} onClick={() => toggleModal()}>
               Cancel
             </Button>
           </Form>
         )
       }
+      validationSchema={RegisterSchema}
     />
   );
 };

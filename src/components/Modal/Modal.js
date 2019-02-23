@@ -26,7 +26,7 @@ const Modal = ({ title, content, modalVisible, toggleModal }) => {
   }, [title, content]);
 
   return (
-    <BootstrapModal isOpen={modalVisible} centered data-testid="modal-backdrop">
+    <BootstrapModal centered data-testid="modal-backdrop" isOpen={modalVisible}>
       <ModalHeader toggle={() => toggleModal()}>{title}</ModalHeader>
       <ModalBody>{content}</ModalBody>
     </BootstrapModal>
