@@ -8,35 +8,27 @@ const setPatients = (patients, state) => {
 };
 
 const addPatient = (patient, state) => {
-  const updatedPatients = [...state.patients];
+  const latestPatients = [...state.patients];
 
-  updatedPatients.push(patient);
+  latestPatients.push(patient);
 
-  return { patients: updatedPatients };
+  return { patients: latestPatients };
 };
 
-const updatePatient = (patient, state) => {
-  const { patientId: currentPatientId } = patient;
-  const updatedPatients = [...state.patients];
-  const updatedPatientIndex = updatedPatients.findIndex(
-    ({ patientId }) => patientId === currentPatientId
-  );
+const updatePatient = (patientIndex, updatedPatient, state) => {
+  const latestPatients = [...state.patients];
 
-  updatedPatients[updatedPatientIndex] = patient;
+  latestPatients[patientIndex] = updatedPatient;
 
-  return { patients: updatedPatients };
+  return { patients: latestPatients };
 };
 
-const deletePatient = (patient, state) => {
-  const { patientId: currentPatientId } = patient;
-  let updatedPatients = [...state.patients];
-  const updatedPatientIndex = updatedPatients.findIndex(
-    ({ patientId }) => patientId === currentPatientId
-  );
+const deletePatient = (patientIndex, state) => {
+  const latestPatients = [...state.patients];
 
-  updatedPatients = updatedPatients.splice(updatedPatientIndex, 1);
+  latestPatients.splice(patientIndex, 1);
 
-  return { patients: updatedPatients };
+  return { patients: latestPatients };
 };
 
 export const patientReducer = (state, action) => {
@@ -46,9 +38,9 @@ export const patientReducer = (state, action) => {
     case ADD_PATIENT:
       return addPatient(action.patient, state);
     case UPDATE_PATIENT:
-      return updatePatient(action.patient, state);
+      return updatePatient(action.patientIndex, state);
     case DELETE_PATIENT:
-      return deletePatient(action.patient, state);
+      return deletePatient(action.patientIndex, state);
     default:
       return state;
   }
