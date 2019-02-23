@@ -13,8 +13,9 @@ const App = () => {
     <AuthProvider>
       <Navigation />
       <Router className={main}>
-        <Landing path="/" />
-        <PrivateRoute component={Dashboard} path="/dashboard" />
+        {/* <Landing path="/" /> */}
+        {/* <PrivateRoute component={Dashboard} path="/dashboard" /> */}
+        <Dashboard path="/" />
         <NotFound default />
       </Router>
     </AuthProvider>
