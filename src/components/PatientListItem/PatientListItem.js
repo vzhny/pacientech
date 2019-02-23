@@ -12,13 +12,14 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Modal from '@/components/Modal/Modal';
+import DeletePatientModalContent from '@/components/PatientListItem/DeletePatientModalContent/DeletePatientModalContent';
 import { PatientContext } from '@/context/PatientContext';
 import { inputBorder } from './PatientListItem.module.scss';
 
 // TODO: remove this once sessions and updatePatient are used
 /* eslint-disable no-unused-vars */
 
-const PatientListItem = ({ patient }) => {
+const PatientListItem = ({ patient, index }) => {
   const {
     patientId,
     name,
@@ -33,7 +34,7 @@ const PatientListItem = ({ patient }) => {
     lastVisit,
   } = patient;
 
-  const { updatePatient, deletePatient } = useContext(PatientContext);
+  const { updatePatient } = useContext(PatientContext);
 
   const [isExpanded, toggleExpanded] = useState(false);
   const [editable, toggleEditing] = useState(false);
@@ -44,19 +45,9 @@ const PatientListItem = ({ patient }) => {
   const openConfirmDeleteModal = id => {
     setModalProps({
       title: 'Confirm Delete',
-      content: (
-        <Form>
-          <FormGroup>
-            <p className="text-primary">
-              <span>Are you sure you want to delete </span>
-              <span>{patientId}</span>
-              <span>?</span>
-            </p>
-            <Button onClick={() => deletePatient(patient)}>Confirm</Button>
-          </FormGroup>
-        </Form>
-      ),
+      content: <DeletePatientModalContent index={index} name={name} toggleModal={toggleModal} />,
     });
+
     toggleModal(!modalVisible);
   };
 
@@ -295,6 +286,7 @@ PatientListItem.propTypes = {
     createdBy: PropTypes.string,
     __v: PropTypes.number,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default PatientListItem;
