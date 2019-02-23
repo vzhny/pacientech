@@ -70,6 +70,11 @@ const Navigation = () => {
               {auth.status ? (
                 <>
                   <NavItem>
+                    <NavLink className={clsx('text-light', cursorOnHover)} onClick={() => {}}>
+                      Add a New Patient
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
                     <NavLink
                       className={clsx('text-light', cursorOnHover)}
                       onClick={() => navigate('/dashboard')}
