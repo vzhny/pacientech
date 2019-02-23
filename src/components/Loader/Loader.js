@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Loader.module.scss';
+import clsx from 'clsx';
+import { loader, bounce1, bounce2, bounce3, dark, light } from './Loader.module.scss';
 
-const Loader = ({ light }) => (
-  <div className={styles.Loader}>
-    <div className={styles.Bounce1} style={{ backgroundColor: light ? '#fff' : '#1a1a1a' }} />
-    <div className={styles.Bounce2} style={{ backgroundColor: light ? '#fff' : '#1a1a1a' }} />
-    <div className={styles.Bounce3} style={{ backgroundColor: light ? '#fff' : '#1a1a1a' }} />
+const Loader = ({ light: lightColor }) => (
+  <div className={loader}>
+    <div className={clsx(lightColor ? clsx(bounce1, light) : clsx(bounce1, dark))} />
+    <div className={clsx(lightColor ? clsx(bounce2, light) : clsx(bounce2, dark))} />
+    <div className={clsx(lightColor ? clsx(bounce3, light) : clsx(bounce3, dark))} />
   </div>
 );
 

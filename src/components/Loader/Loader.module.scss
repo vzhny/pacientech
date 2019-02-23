@@ -1,22 +1,36 @@
-.Loader {
+@import '~@/styles/scss/partials/variables';
+
+.loader {
   text-align: center;
+
+  > div {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 100%;
+    display: inline-block;
+    animation: bounce-delay 1.4s infinite ease-in-out both;
+  }
+
+  .bounce1 {
+    animation-delay: -0.32s;
+  }
+
+  .bounce2 {
+    animation-delay: -0.16s;
+  }
+
+  .bounce3 {
+    animation-delay: 0s;
+  }
 }
 
-.Loader > div {
-  width: 30px;
-  height: 30px;
-
-  border-radius: 100%;
-  display: inline-block;
-  animation: bounce-delay 1.4s infinite ease-in-out both;
+.dark {
+  background-color: $black;
 }
 
-.Loader .Bounce1 {
-  animation-delay: -0.32s;
-}
-
-.Loader .Bounce2 {
-  animation-delay: -0.16s;
+.light {
+  background-color: $white;
 }
 
 @keyframes bounce-delay {
