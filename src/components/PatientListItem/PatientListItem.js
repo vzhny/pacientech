@@ -12,13 +12,14 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Modal from '@/components/Modal/Modal';
+import DeletePatientModalContent from '@/components/PatientListItem/DeletePatientModalContent/DeletePatientModalContent';
 import { PatientContext } from '@/context/PatientContext';
 import { inputBorder } from './PatientListItem.module.scss';
 
 // TODO: remove this once sessions and updatePatient are used
 /* eslint-disable no-unused-vars */
 
-const PatientListItem = ({ patient }) => {
+const PatientListItem = ({ patient, index }) => {
   const {
     patientId,
     name,
@@ -29,10 +30,11 @@ const PatientListItem = ({ patient }) => {
     diagnosis,
     notes,
     sessions,
+    totalNumberOfSessions,
     lastVisit,
   } = patient;
 
-  const { updatePatient, deletePatient } = useContext(PatientContext);
+  const { updatePatient } = useContext(PatientContext);
 
   const [isExpanded, toggleExpanded] = useState(false);
   const [editable, toggleEditing] = useState(false);
@@ -43,19 +45,9 @@ const PatientListItem = ({ patient }) => {
   const openConfirmDeleteModal = id => {
     setModalProps({
       title: 'Confirm Delete',
-      content: (
-        <Form>
-          <FormGroup>
-            <p className="text-primary">
-              <span>Are you sure you want to delete </span>
-              <span>{patientId}</span>
-              <span>?</span>
-            </p>
-            <Button onClick={() => deletePatient(patient)}>Confirm</Button>
-          </FormGroup>
-        </Form>
-      ),
+      content: <DeletePatientModalContent index={index} name={name} toggleModal={toggleModal} />,
     });
+
     toggleModal(!modalVisible);
   };
 
@@ -99,28 +91,6 @@ const PatientListItem = ({ patient }) => {
               <Label for="name">Name:</Label>
               <Input disabled className={inputBorder} name="name" type="text" value={name} />
             </Col>
-            <Col lg="6">
-              <Label for="address">Address:</Label>
-              <Input
-                className={inputBorder}
-                disabled={!editable}
-                name="address"
-                type="text"
-                value={address}
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Col lg="6">
-              <Label for="email">Email:</Label>
-              <Input
-                className={inputBorder}
-                disabled={!editable}
-                name="email"
-                type="email"
-                value={email}
-              />
-            </Col>
             <Col lg="3">
               <Label for="phoneNumbers">Phone Numbers:</Label>
               <Input className={inputBorder} name="phoneNumbers" type="select">
@@ -142,16 +112,27 @@ const PatientListItem = ({ patient }) => {
           </FormGroup>
           <FormGroup row>
             <Col lg="6">
-              <Label for="reason">Reason(s) For Visit:</Label>
+              <Label for="address">Address:</Label>
               <Input
                 className={inputBorder}
                 disabled={!editable}
-                name="reason"
-                rows="3"
-                type="textarea"
-                value={reason}
+                name="address"
+                type="text"
+                value={address}
               />
             </Col>
+            <Col lg="6">
+              <Label for="email">Email:</Label>
+              <Input
+                className={inputBorder}
+                disabled={!editable}
+                name="email"
+                type="email"
+                value={email}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
             <Col lg="6">
               <Label for="diagnosis">Diagnosis:</Label>
               <Input
@@ -163,6 +144,17 @@ const PatientListItem = ({ patient }) => {
                 value={diagnosis}
               />
             </Col>
+            <Col lg="6">
+              <Label for="reason">Reason(s) For Visit:</Label>
+              <Input
+                className={inputBorder}
+                disabled={!editable}
+                name="reason"
+                rows="3"
+                type="textarea"
+                value={reason}
+              />
+            </Col>
           </FormGroup>
           <FormGroup row>
             <Col>
@@ -171,7 +163,7 @@ const PatientListItem = ({ patient }) => {
                 className={inputBorder}
                 disabled={!editable}
                 name="notes"
-                rows="4"
+                rows="6"
                 type="textarea"
                 value={notes}
               />
@@ -203,9 +195,10 @@ const PatientListItem = ({ patient }) => {
       </ListGroupItemHeading>
       <Form>
         <FormGroup row>
-          <Col lg="2">
+          <Col lg="6">
             <Label for="name">Name:</Label>
             <Input
+              readOnly
               className={inputBorder}
               disabled={!editable}
               name="name"
@@ -213,29 +206,15 @@ const PatientListItem = ({ patient }) => {
               value={name}
             />
           </Col>
-          <Col lg="4">
-            <Label for="diagnosis">Diagnosis:</Label>
-            <Input
-              className={inputBorder}
-              disabled={!editable}
-              name="diagnosis"
-              rows="1"
-              type="textarea"
-              value={diagnosis}
-            />
+          <Col lg="3">
+            <Label for="phoneNumbers">Phone Numbers:</Label>
+            <Input className={inputBorder} name="phoneNumbers" type="select">
+              {phoneNumbers.map(({ _id, type, number }) => (
+                <option key={type}>{number}</option>
+              ))}
+            </Input>
           </Col>
-          <Col lg="4">
-            <Label for="notes">Notes:</Label>
-            <Input
-              className={inputBorder}
-              disabled={!editable}
-              name="notes"
-              rows="1"
-              type="textarea"
-              value={notes}
-            />
-          </Col>
-          <Col lg="2">
+          <Col lg="3">
             <Label for="lastVisit">Last Visit:</Label>
             <Input
               className={inputBorder}
@@ -243,6 +222,30 @@ const PatientListItem = ({ patient }) => {
               name="lastVisit"
               type="text"
               value={lastVisit}
+            />
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Col lg="6">
+            <Label for="diagnosis">Diagnosis:</Label>
+            <Input
+              className={inputBorder}
+              disabled={!editable}
+              name="diagnosis"
+              rows="2"
+              type="textarea"
+              value={diagnosis}
+            />
+          </Col>
+          <Col lg="6">
+            <Label for="notes">Notes:</Label>
+            <Input
+              className={inputBorder}
+              disabled={!editable}
+              name="notes"
+              rows="2"
+              type="textarea"
+              value={notes}
             />
           </Col>
         </FormGroup>
@@ -280,9 +283,10 @@ PatientListItem.propTypes = {
         notes: PropTypes.string.isRequired,
       })
     ).isRequired,
-    createdBy: PropTypes.object,
+    createdBy: PropTypes.string,
     __v: PropTypes.number,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default PatientListItem;

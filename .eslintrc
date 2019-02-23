@@ -46,12 +46,7 @@
     ],
     "import/no-unresolved": "off",
     "react/jsx-filename-extension": "off",
-    "react/jsx-one-expression-per-line": [
-      "warn",
-      {
-        "allow": "single-child"
-      }
-    ],
+    "react/jsx-one-expression-per-line": ["off"],
     "react/jsx-sort-props": [
       "warn",
       {

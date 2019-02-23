@@ -12,11 +12,11 @@ const PatientList = () => {
   useEffect(() => {
     setPatients(mockPatients);
     setLoading(false);
-  }, [patients]);
+  }, []);
 
   const numberOfPatients = patients.length;
-  const patientsListItems = patients.map(patient => (
-    <PatientListItem key={patient.patientId} patient={patient} />
+  const patientsListItems = patients.map((patient, index) => (
+    <PatientListItem key={patient.patientId} index={index} patient={patient} />
   ));
 
   const patientList = (

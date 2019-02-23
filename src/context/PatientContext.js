@@ -27,12 +27,12 @@ export const PatientProvider = ({ children }) => {
     dispatch({ type: ADD_PATIENT, patient });
   };
 
-  const updatePatient = patient => {
-    dispatch({ type: UPDATE_PATIENT, patient });
+  const updatePatient = (patientIndex, updatedPatient) => {
+    dispatch({ type: UPDATE_PATIENT, patientIndex, updatedPatient });
   };
 
-  const deletePatient = patient => {
-    dispatch({ type: DELETE_PATIENT, patient });
+  const deletePatient = patientIndex => {
+    dispatch({ type: DELETE_PATIENT, patientIndex });
   };
 
   return (
