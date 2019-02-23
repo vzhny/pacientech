@@ -1,0 +1,12 @@
+@import '~@/styles/scss/partials/variables';
+
+.inputBorder {
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  border-radius: 0 !important;
+  color: $black;
+
+  &:disabled {
+    background-color: $white;
+    color: $black;
+  }
+}
