@@ -16,7 +16,7 @@ import {
 import Modal from '@/components/Modal/Modal';
 import LoginForm from '@/components/LoginForm/LoginForm';
 import RegisterForm from '@/components/RegisterForm/RegisterForm';
-import { AuthContext } from '@/auth/AuthContext';
+import { AuthContext } from '@/context/AuthContext';
 import styles from './Navigation.module.scss';
 
 const Navigation = () => {

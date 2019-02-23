@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router } from '@reach/router';
 import PrivateRoute from '@/auth/PrivateRoute';
-import { AuthProvider } from '@/auth/AuthContext';
+import { AuthProvider } from '@/context/AuthContext';
 import Navigation from '@/components/Navigation/Navigation';
 import Landing from '@/pages/Landing/Landing';
 import Dashboard from '@/pages/Dashboard/Dashboard';

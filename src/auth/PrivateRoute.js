@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useContext } from 'react';
 import { navigate } from '@reach/router';
 import PropTypes from 'prop-types';
 import Landing from '@/pages/Landing/Landing';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from '@/context/AuthContext';
 
 const Redirect = () => {
   useLayoutEffect(() => {

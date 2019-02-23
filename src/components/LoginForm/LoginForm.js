@@ -7,7 +7,7 @@ import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import Loader from '@/components/Loader/Loader';
-import { AuthContext } from '@/auth/AuthContext';
+import { AuthContext } from '@/context/AuthContext';
 import styles from './LoginForm.module.scss';
 
 const LoginSchema = Yup.object().shape({
