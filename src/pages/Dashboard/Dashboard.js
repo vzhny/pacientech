@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Container } from 'reactstrap';
+import { PatientProvider } from '@/context/PatientContext';
 import { dashboard } from './Dashboard.module.scss';
 
 const Dashboard = () => {
@@ -9,7 +10,9 @@ const Dashboard = () => {
 
   return (
     <Container className={dashboard}>
-      <h1>Dashboard Page</h1>
+      <PatientProvider>
+        <h1>Dashboard Page</h1>
+      </PatientProvider>
     </Container>
   );
 };
