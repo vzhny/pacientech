@@ -46,6 +46,21 @@
     ],
     "import/no-unresolved": "off",
     "react/jsx-filename-extension": "off",
+    "react/jsx-one-expression-per-line": [
+      "warn",
+      {
+        "allow": "single-child"
+      }
+    ],
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "callbacksLast": false,
+        "shorthandFirst": true,
+        "reservedFirst": true
+      }
+    ],
+    "react/destructuring-assignment": ["warn", "always"],
     "react/self-closing-comp": [
       "warn",
       {
