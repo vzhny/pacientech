@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import Loader from '@/components/Loader/Loader';
 import { AuthContext } from '@/context/AuthContext';
-import styles from './RegisterForm.module.scss';
+import { inputBorder } from './RegisterForm.module.scss';
 
 const RegisterSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -62,7 +62,7 @@ const RegisterForm = ({ toggleModal }) => {
                     First Name
                   </Label>
                   <Input
-                    className={styles.InputBorder}
+                    className={inputBorder}
                     disabled={isSubmitting}
                     invalid={!!errors.firstName}
                     name="firstName"
@@ -84,7 +84,7 @@ const RegisterForm = ({ toggleModal }) => {
                     Last Name
                   </Label>
                   <Input
-                    className={styles.InputBorder}
+                    className={inputBorder}
                     disabled={isSubmitting}
                     invalid={!!errors.lastName}
                     name="lastName"
@@ -106,7 +106,7 @@ const RegisterForm = ({ toggleModal }) => {
                 Email Address
               </Label>
               <Input
-                className={styles.InputBorder}
+                className={inputBorder}
                 disabled={isSubmitting}
                 invalid={!!errors.email}
                 name="email"
@@ -124,7 +124,7 @@ const RegisterForm = ({ toggleModal }) => {
                 Password
               </Label>
               <Input
-                className={styles.InputBorder}
+                className={inputBorder}
                 disabled={isSubmitting}
                 invalid={!!errors.password}
                 name="password"

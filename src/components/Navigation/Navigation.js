@@ -17,7 +17,7 @@ import Modal from '@/components/Modal/Modal';
 import LoginForm from '@/components/LoginForm/LoginForm';
 import RegisterForm from '@/components/RegisterForm/RegisterForm';
 import { AuthContext } from '@/context/AuthContext';
-import styles from './Navigation.module.scss';
+import { shadow, cursorOnHover } from './Navigation.module.scss';
 
 const Navigation = () => {
   const [isOpen, toggleNavbar] = useState(false);
@@ -55,7 +55,7 @@ const Navigation = () => {
 
   return (
     <>
-      <Navbar dark className={clsx('bg-primary', styles.Shadow)} expand="md">
+      <Navbar dark className={clsx('bg-primary', shadow)} expand="md">
         <Container>
           <NavbarBrand
             tag={() => (
@@ -71,7 +71,7 @@ const Navigation = () => {
                 <>
                   <NavItem>
                     <NavLink
-                      className={clsx('text-light', styles.CursorOnHover)}
+                      className={clsx('text-light', cursorOnHover)}
                       onClick={() => navigate('/dashboard')}
                     >
                       Dashboard
@@ -79,7 +79,7 @@ const Navigation = () => {
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      className={clsx('text-light', styles.CursorOnHover)}
+                      className={clsx('text-light', cursorOnHover)}
                       onClick={() => logOutUser()}
                     >
                       Log Out
@@ -90,7 +90,7 @@ const Navigation = () => {
                 <>
                   <NavItem>
                     <NavLink
-                      className={clsx('text-light', styles.CursorOnHover)}
+                      className={clsx('text-light', cursorOnHover)}
                       onClick={() => openLoginFormModal()}
                     >
                       Log In
@@ -98,7 +98,7 @@ const Navigation = () => {
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      className={clsx('text-light', styles.CursorOnHover)}
+                      className={clsx('text-light', cursorOnHover)}
                       onClick={() => openRegisterFormModal()}
                     >
                       Register

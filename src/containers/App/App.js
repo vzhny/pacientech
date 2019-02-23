@@ -6,13 +6,13 @@ import Navigation from '@/components/Navigation/Navigation';
 import Landing from '@/pages/Landing/Landing';
 import Dashboard from '@/pages/Dashboard/Dashboard';
 import NotFound from '@/pages/NotFound/NotFound';
-import styles from './App.module.scss';
+import { main } from './App.module.scss';
 
 const App = () => {
   return (
     <AuthProvider>
       <Navigation />
-      <Router className={styles.Main}>
+      <Router className={main}>
         <Landing path="/" />
         <PrivateRoute component={Dashboard} path="/dashboard" />
         <NotFound default />
