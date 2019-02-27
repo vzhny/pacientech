@@ -24,8 +24,12 @@ const PatientList = () => {
       {numberOfPatients ? (
         patientsListItems
       ) : (
-        <ListGroupItem className="d-flex justify-content-center text-primary">
-          <h1 className="m-0">Please add a patient!</h1>
+        <ListGroupItem className="text-center text-primary">
+          <h1 className="my-3">Please add a patient!</h1>
+          <p>
+            Begin by clicking <span className="text-info">&#39;Add a New Patient&#39;</span> in the
+            navigation bar.
+          </p>
         </ListGroupItem>
       )}
     </ListGroup>
