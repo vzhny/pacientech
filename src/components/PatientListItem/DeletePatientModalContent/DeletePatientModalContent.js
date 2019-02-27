@@ -18,7 +18,7 @@ const DeletePatientModalContent = ({ name, index, toggleModal }) => {
       <FormGroup>
         <p className="text-primary text-center">Are you sure you want to delete {name}?</p>
         <p className="text-primary text-center">
-          WARNING: this action <strong className="text-danger">cannot</strong> be undone!
+          WARNING: this action <strong className="text-danger">CANNOT</strong> be undone!
         </p>
       </FormGroup>
       <Button color="success" onClick={e => onConfirmDeletePatient(e)} type="submit">
